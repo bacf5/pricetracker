@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-const Searchbar = () => {
+const SearchBar = () => {
   const handleSubmit = () => {};
 
   return (
@@ -19,4 +19,4 @@ const Searchbar = () => {
   );
 };
 
-export default Searchbar;
+export default SearchBar;
