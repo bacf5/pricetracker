@@ -19,7 +19,7 @@ const Navbar = () => {
             height={34}
             alt="Logo"
           />
-          <p className="nav-logo">
+          <p className="nav-logo mt-2">
             Price<span className="text-primary">Tracker</span>
           </p>
         </Link>
