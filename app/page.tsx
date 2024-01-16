@@ -10,7 +10,7 @@ const Home = () => {
         <div className="flex max-xl:flex-col gap-16">
           <div className="flex flex-col justify-center">
             <p className="small-text">
-              Smart Shopping start here:{' '}
+              Tu búsqueda comienza aquí{' '}
               <Image
                 src="assets/icons/arrow-right.svg"
                 alt="Arrow Right"
@@ -19,12 +19,12 @@ const Home = () => {
               />
             </p>
             <h1 className="head-text">
-              Unleash the Power of{' '}
-              <span className="text-primary">tracking prices</span>
+              Buscá y esperá el
+              <span className="text-primary"> mejor precio</span>
             </h1>
             <p className="mt-6">
-              Are you waiting for a discount for a dream product? Follow it here
-              and buy it at its lowest price!
+              ¿Estás esperando un descuento para ese producto que querés?
+              ¡Seguilo acá y cómpralo al precio más bajo!
             </p>
             <SearchBar />
           </div>
