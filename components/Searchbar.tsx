@@ -1,19 +1,67 @@
 'use client';
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
+
+const isValidPadelURL = (url: string) => {
+  // Implement your logic to validate the url
+
+  try {
+    const parsedURL = new URL(url);
+    const hostname = parsedURL.hostname;
+
+    // Check if the hostname contains "padel"
+
+    if (
+      hostname.includes('padelnuestro.com') ||
+      hostname.includes('padelnuestro')
+    )
+      return true;
+  } catch (error) {
+    return false;
+  }
+  return false;
+};
 
 const SearchBar = () => {
-  const handleSubmit = () => {};
+  const [searchLink, setSearchLink] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const isValidLink = isValidPadelURL(searchLink);
+
+    // alert(isValidLink ? 'Link Válido' : ' Link Inválido');
+
+    if (!isValidLink)
+      return alert('Asegurate que el link sea de padelnuestro.com');
+
+    try {
+      setIsLoading(true);
+
+      // Scrape the product details from the link
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <form className="flex flex-wrap gap-4 mt-12" onSubmit={handleSubmit}>
       <input
         type="text"
+        value={searchLink}
+        onChange={(e) => setSearchLink(e.target.value)}
         placeholder="Link del producto"
         className="searchbar-input"
       />
 
-      <button type="submit" className="searchbar-btn">
-        Buscar
+      <button
+        type="submit"
+        className="searchbar-btn"
+        disabled={searchLink === ''}
+      >
+        {isLoading ? 'Buscando...' : 'Buscar'}
       </button>
     </form>
   );
