@@ -1,7 +1,36 @@
+import axios from 'axios';
+import * as cheerio from 'cheerio';
+
 export async function scrapePadelProduct(url: string) {
-  // Implement your scraper logic here
+  // scraper logic here
 
   if (!url) return;
 
   // BrightData Configuration
+
+  const username = String(process.env.BRIGHT_DATA_USERNAME);
+  const password = String(process.env.BRIGHT_DATA_PASSWORD);
+  const port = 22225;
+  const session_id = (10000000 * Math.random()) | 0;
+
+  // Whith this object we can make a request to get the data from BrightData
+
+  const options = {
+    auth: {
+      username: `${username}-session-${session_id}`,
+      password,
+    },
+    host: 'brd.superproxy.io',
+    port,
+    rejectUnauthorized: false,
+  };
+
+  try {
+    // Fetch the product page
+    const response = await axios.get(url, options);
+
+    console.log(response.data);
+  } catch (error: any) {
+    throw new Error(`Failed to scrape the product: ${error.message}`);
+  }
 }
