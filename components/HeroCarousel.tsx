@@ -6,11 +6,11 @@ import { Carousel } from 'react-responsive-carousel';
 import Image from 'next/image';
 
 const heroImages = [
-  { imgUrl: '/assets/images/hero-1.svg', alt: 'Smart Watch' },
-  { imgUrl: '/assets/images/hero-2.svg', alt: 'Bag' },
-  { imgUrl: '/assets/images/hero-3.svg', alt: 'Lamp' },
-  { imgUrl: '/assets/images/hero-4.svg', alt: 'Air Fryer' },
-  { imgUrl: '/assets/images/hero-5.svg', alt: 'Chair' },
+  { imgUrl: '/assets/images/hero-1.png', alt: 'Racket 1' },
+  { imgUrl: '/assets/images/hero-2.png', alt: 'Racket 2' },
+  { imgUrl: '/assets/images/hero-3.png', alt: 'Racket 3' },
+  { imgUrl: '/assets/images/hero-4.png', alt: 'Racket 4' },
+  { imgUrl: '/assets/images/hero-5.png', alt: 'Racket 5' },
 ];
 
 const HeroCarousel = () => (
@@ -21,14 +21,15 @@ const HeroCarousel = () => (
       infiniteLoop
       interval={2500}
       showArrows={false}
-      showStatus={true}
+      showStatus={false}
+      showIndicators={false}
     >
       {heroImages.map((image) => (
         <Image
           src={image.imgUrl}
           alt={image.alt}
-          width={484}
-          height={484}
+          width={500}
+          height={500}
           className="object-contain"
           key={image.alt}
         />
