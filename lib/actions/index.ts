@@ -3,8 +3,6 @@
 import { scrapePadelProduct } from '../scraper';
 
 export async function scrapeAndStoreProduct(productUrl: string) {
-  // scrapear el producto y guardarlo en la base de datos para poder trackear el precio
-
   if (!productUrl) return;
 
   try {

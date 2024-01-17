@@ -1,4 +1,5 @@
 'use client';
+import { scrapeAndStoreProduct } from '@/lib/actions';
 import React, { FormEvent, useState } from 'react';
 
 const isValidPadelURL = (url: string) => {
@@ -25,7 +26,7 @@ const SearchBar = () => {
   const [searchLink, setSearchLink] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const isValidLink = isValidPadelURL(searchLink);
@@ -39,6 +40,7 @@ const SearchBar = () => {
       setIsLoading(true);
 
       // Scrape the product details from the link
+      const product = await scrapeAndStoreProduct(searchLink);
     } catch (error) {
       console.log(error);
     } finally {
