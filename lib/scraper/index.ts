@@ -28,8 +28,9 @@ export async function scrapePadelProduct(url: string) {
   try {
     // Fetch the product page
     const response = await axios.get(url, options);
-
-    console.log(response.data);
+    const $ = cheerio.load(response.data);
+    const title = $('.page-title span').text().trim();
+    console.log({ title });
   } catch (error: any) {
     throw new Error(`Failed to scrape the product: ${error.message}`);
   }
