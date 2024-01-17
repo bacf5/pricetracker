@@ -1,11 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverActions: true,
-    serverComponentsExternalPackages: ['mongoose'],
-  },
   images: {
-    remotePatterns: ['www.padelnuestro.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'padelnuestro.com',
+        port: '',
+        pathname: '*',
+      },
+    ],
   },
 };
 
