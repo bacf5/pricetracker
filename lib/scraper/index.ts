@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 
 export async function scrapePadelProduct(url: string) {
+  // regex for the price
   const regx = /[a-zA-Z]+\D+/;
 
   if (!url) return;
@@ -29,17 +30,40 @@ export async function scrapePadelProduct(url: string) {
     // Fetch the product page & do te scraping
     const response = await axios.get(url, options);
     const $ = cheerio.load(response.data);
+
     const title = $('.page-title span').text().trim();
+
     const description = $('.value p').text().trim();
+
     const specialPrice = $('[data-role=priceBox] .special-price span:first')
       .text()
       .trim()
       .replace(regx, '');
+
+    const finalPrice = $('[data-price-type="finalPrice"] span:first')
+      .text()
+      .trim()
+      .replace(regx, '');
+
     const oldPrice = $('[data-role=priceBox] .old-price span:first')
       .text()
       .trim()
       .replace(regx, '');
-    console.log({ title, description, specialPrice, oldPrice });
+
+    const image = $('.gallery-placeholder__image').attr('src');
+
+    console.log({
+      title,
+      description,
+      specialPrice,
+      oldPrice,
+      finalPrice,
+      image,
+    });
+
+    // Construct data object with scraped info
+
+    // TODO
   } catch (error: any) {
     throw new Error(`Failed to scrape the product: ${error.message}`);
   }
