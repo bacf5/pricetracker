@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 
 export async function scrapePadelProduct(url: string) {
-  // scraper logic here
+  const regx = /[a-zA-Z]+\D+/;
 
   if (!url) return;
 
@@ -26,11 +26,20 @@ export async function scrapePadelProduct(url: string) {
   };
 
   try {
-    // Fetch the product page
+    // Fetch the product page & do te scraping
     const response = await axios.get(url, options);
     const $ = cheerio.load(response.data);
     const title = $('.page-title span').text().trim();
-    console.log({ title });
+    const description = $('.value p').text().trim();
+    const specialPrice = $('[data-role=priceBox] .special-price span:first')
+      .text()
+      .trim()
+      .replace(regx, '');
+    const oldPrice = $('[data-role=priceBox] .old-price span:first')
+      .text()
+      .trim()
+      .replace(regx, '');
+    console.log({ title, description, specialPrice, oldPrice });
   } catch (error: any) {
     throw new Error(`Failed to scrape the product: ${error.message}`);
   }
