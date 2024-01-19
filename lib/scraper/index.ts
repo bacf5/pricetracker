@@ -38,7 +38,7 @@ export async function scrapePadelProduct(url: string) {
     // problem which is not solved yet TODO
     // TODO outofstock prodcut alert have html
 
-    // const outOfStock = $('a .action alert').text();
+    const outOfStock = $('.action.alert').text().trim() ? true : false;
 
     const specialPrice = $('[data-role=priceBox] .special-price span:first')
       .text()
@@ -53,7 +53,7 @@ export async function scrapePadelProduct(url: string) {
       .trim()
       .match(regx);
 
-    // Convert array/strings scraped to number to be able to compare and calculate percentage // TODO refactor and make it more pretty but not now okay? thanks
+    // Convert array/strings scraped to number to be able to compare and calculate percentage // TODO some refactor and make it more pretty but not now okay? thanks
 
     const specialPriceNumber = makeStringToNumber(specialPrice);
     const finalPriceNumber = makeStringToNumber(finalPrice);
@@ -63,8 +63,6 @@ export async function scrapePadelProduct(url: string) {
 
     // Construct data object with scraped info
 
-    // console.log(outOfStock);
-
     const data = {
       url,
       title: title,
@@ -73,6 +71,7 @@ export async function scrapePadelProduct(url: string) {
       oldPrice: oldPriceNumber,
       finalPrice: finalPriceNumber,
       discount: discountRate,
+      stock: outOfStock,
     };
   } catch (error: any) {
     throw new Error(`Failed to scrape the product: ${error.message}`);
