@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { makeStringToNumber } from '../utils';
+import { makePercentagePrice, makeStringToNumber } from '../utils';
 
 export async function scrapePadelProduct(url: string) {
   // regex for the price
@@ -50,6 +50,8 @@ export async function scrapePadelProduct(url: string) {
       .trim()
       .match(regx);
 
+    // Convert array/strings scraped to number to be able to compare and calculate percentage // TODO refactor and make it more pretty but not now okay? thanks
+
     const specialPriceNumber = makeStringToNumber(specialPrice);
     const finalPriceNumber = makeStringToNumber(finalPrice);
     const oldPriceNumber = makeStringToNumber(oldPrice);
@@ -57,6 +59,10 @@ export async function scrapePadelProduct(url: string) {
     // console.log(specialPriceNumber, finalPriceNumber, oldPriceNumber);
 
     const image = $('.gallery-placeholder__image').attr('src');
+
+    // console.log(finalPriceNumber, oldPriceNumber);
+
+    // console.log(makePercentagePrice(finalPriceNumber, oldPriceNumber));
 
     // console.log({
     //   title,
@@ -75,7 +81,6 @@ export async function scrapePadelProduct(url: string) {
       image,
       title,
     };
-    // TODO - Price percentage
   } catch (error: any) {
     throw new Error(`Failed to scrape the product: ${error.message}`);
   }

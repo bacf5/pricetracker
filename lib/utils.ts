@@ -4,3 +4,9 @@ export function makeStringToNumber(value: any) {
 
   return priceNumber;
 }
+
+export function makePercentagePrice(price: number, oldPrice: number) {
+  const percentage = ((oldPrice - price) / oldPrice) * 100;
+  const percentageRounded = Math.round(percentage);
+  return percentageRounded;
+}
