@@ -1,9 +1,10 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import { makeStringToNumber } from '../utils';
 
 export async function scrapePadelProduct(url: string) {
   // regex for the price
-  const regx = /[a-zA-Z]+\D+/;
+  const regx = /\b\d{3},\d{2}\b/g;
 
   if (!url) return;
 
@@ -38,32 +39,43 @@ export async function scrapePadelProduct(url: string) {
     const specialPrice = $('[data-role=priceBox] .special-price span:first')
       .text()
       .trim()
-      .replace(regx, '');
-
+      .match(regx);
     const finalPrice = $('[data-price-type="finalPrice"] span:first')
       .text()
       .trim()
-      .replace(regx, '');
+      .match(regx);
 
     const oldPrice = $('[data-role=priceBox] .old-price span:first')
       .text()
       .trim()
-      .replace(regx, '');
+      .match(regx);
+
+    const specialPriceNumber = makeStringToNumber(specialPrice);
+    const finalPriceNumber = makeStringToNumber(finalPrice);
+    const oldPriceNumber = makeStringToNumber(oldPrice);
+
+    // console.log(specialPriceNumber, finalPriceNumber, oldPriceNumber);
 
     const image = $('.gallery-placeholder__image').attr('src');
 
-    console.log({
-      title,
-      description,
-      specialPrice,
+    // console.log({
+    //   title,
+    //   description,
+    //   specialPrice,
+    //   oldPrice,
+    //   finalPrice,
+    //   image,
+    // });
+
+    // TODO Construct data object with scraped info
+    const data = {
+      url,
       oldPrice,
       finalPrice,
       image,
-    });
-
-    // Construct data object with scraped info
-
-    // TODO
+      title,
+    };
+    // TODO - Price percentage
   } catch (error: any) {
     throw new Error(`Failed to scrape the product: ${error.message}`);
   }
