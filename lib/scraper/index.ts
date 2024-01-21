@@ -71,7 +71,7 @@ export async function scrapePadelProduct(url: string) {
       url,
       title: title,
       description: description,
-      img: image,
+      image: image,
       oldPrice: oldPriceNumber || finalPriceNumber,
       finalPrice: finalPriceNumber || oldPriceNumber,
       lowestPrice:
