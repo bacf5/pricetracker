@@ -7,6 +7,7 @@ export async function scrapeAndStoreProduct(productUrl: string) {
 
   try {
     const scapedProduct = await scrapePadelProduct(productUrl);
+    if (!scapedProduct) return;
   } catch (error: any) {
     throw new Error(`Failed to create/update the product: ${error.message}`);
   }

@@ -72,13 +72,17 @@ export async function scrapePadelProduct(url: string) {
       title: title,
       description: description,
       img: image,
-      oldPrice: oldPriceNumber,
-      finalPrice: finalPriceNumber,
+      oldPrice: oldPriceNumber || finalPriceNumber,
+      finalPrice: finalPriceNumber || oldPriceNumber,
+      lowestPrice:
+        oldPriceNumber < finalPriceNumber ? oldPriceNumber : finalPriceNumber,
+      highestPrice:
+        finalPriceNumber > oldPriceNumber ? finalPriceNumber : oldPriceNumber,
+      priceHistory: [],
       discount: discountRate,
-      stock: isOutOfStock,
+      isOutOfStock: isOutOfStock,
     };
-
-    console.log({ data });
+    return data;
   } catch (error: any) {
     throw new Error(`Failed to scrape the product: ${error.message}`);
   }
