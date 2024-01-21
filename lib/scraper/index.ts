@@ -35,27 +35,31 @@ export async function scrapePadelProduct(url: string) {
     const title = $('.page-title span').text().trim();
     const description = $('.value p').text().trim();
 
-    // problem which is not solved yet TODO
-    // TODO outofstock prodcut alert have html
+    const isOutOfStock = $('.action.alert').text().trim() ? true : false;
 
-    const outOfStock = $('.action.alert').text().trim() ? true : false;
+    // BUG: Theres some pages that do not have 'special price' and crash the app. Looking into this later
 
-    const specialPrice = $('[data-role=priceBox] .special-price span:first')
-      .text()
-      .trim()
-      .match(regx);
+    /* const specialPrice =
+      $('[data-role=priceBox] .special-price span:first')
+        .text()
+        .trim()
+        .match(regx); */
+
     const finalPrice = $('[data-price-type="finalPrice"] span:first')
       .text()
       .trim()
       .match(regx);
-    const oldPrice = $('[data-role=priceBox] .old-price span:first')
-      .text()
-      .trim()
-      .match(regx);
+    const oldPrice =
+      $('[data-role=priceBox] .old-price span:first')
+        .text()
+        .trim()
+        .match(regx) || finalPrice;
 
-    // Convert array/strings scraped to number to be able to compare and calculate percentage // TODO some refactor and make it more pretty but not now okay? thanks
+    // Convert array/strings scraped to number to be able to compare and calculate percentage
+    // TODO some refactor and make it more pretty but not now okay? thanks
 
-    const specialPriceNumber = makeStringToNumber(specialPrice);
+    // const specialPriceNumber = makeStringToNumber(specialPrice);
+
     const finalPriceNumber = makeStringToNumber(finalPrice);
     const oldPriceNumber = makeStringToNumber(oldPrice);
     const discountRate = makePercentagePrice(finalPriceNumber, oldPriceNumber);
@@ -71,8 +75,10 @@ export async function scrapePadelProduct(url: string) {
       oldPrice: oldPriceNumber,
       finalPrice: finalPriceNumber,
       discount: discountRate,
-      stock: outOfStock,
+      stock: isOutOfStock,
     };
+
+    console.log({ data });
   } catch (error: any) {
     throw new Error(`Failed to scrape the product: ${error.message}`);
   }
