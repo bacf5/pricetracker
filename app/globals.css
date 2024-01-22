@@ -125,15 +125,15 @@
   }
 
   /* PRODUCT CARD */
-  .product-card {
+  .trending-card {
     @apply sm:w-[292px] sm:max-w-[292px] w-full flex-1 flex flex-col gap-4 rounded-md;
   }
 
-  .product-card_img-container {
+  .trending-card_img-container {
     @apply flex-1 relative flex flex-col gap-5 p-4 rounded-md;
   }
 
-  .product-card_img {
+  .trending-card_img {
     @apply max-h-[250px] object-contain w-full h-full bg-transparent;
   }
 
