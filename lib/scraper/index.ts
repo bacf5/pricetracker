@@ -63,6 +63,10 @@ export async function scrapePadelProduct(url: string) {
     const finalPriceNumber = makeStringToNumber(finalPrice);
     const oldPriceNumber = makeStringToNumber(oldPrice);
     const discountRate = makePercentagePrice(finalPriceNumber, oldPriceNumber);
+    const lowestNumber =
+      oldPriceNumber < finalPriceNumber ? oldPriceNumber : finalPriceNumber;
+    const highestNumber =
+      finalPriceNumber > oldPriceNumber ? finalPriceNumber : oldPriceNumber;
     const image = $('.gallery-placeholder__image').attr('src');
 
     // Construct data object with scraped info
@@ -74,10 +78,9 @@ export async function scrapePadelProduct(url: string) {
       image: image,
       oldPrice: oldPriceNumber || finalPriceNumber,
       finalPrice: finalPriceNumber || oldPriceNumber,
-      lowestPrice:
-        oldPriceNumber < finalPriceNumber ? oldPriceNumber : finalPriceNumber,
-      highestPrice:
-        finalPriceNumber > oldPriceNumber ? finalPriceNumber : oldPriceNumber,
+      lowestPrice: lowestNumber,
+      highestPrice: highestNumber,
+      averagePrice: 0,
       priceHistory: [],
       discount: discountRate,
       isOutOfStock: isOutOfStock,
