@@ -9,7 +9,7 @@ interface Props {
 const TrendingCard = ({ product }: Props) => {
   return (
     <Link href={`/products/${product._id}`} className="product-card">
-      <div>
+      <div className="trending-card_img-container">
         <Image
           src={product.image}
           alt={product.title}
@@ -17,6 +17,15 @@ const TrendingCard = ({ product }: Props) => {
           height={200}
           className="trending-card_img"
         />
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <h4 className="trending-title">{product.title}</h4>
+        <div className="flex justify-between">
+          <p className="text-black opacity-50 text-lg capitalize">
+            {`€ ${product.lowestPrice}`}
+          </p>
+        </div>
       </div>
     </Link>
   );
