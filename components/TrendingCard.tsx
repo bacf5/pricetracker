@@ -8,7 +8,7 @@ interface Props {
 }
 const TrendingCard = ({ product }: Props) => {
   return (
-    <Link href={`/products/${product._id}`} className="product-card">
+    <Link href={`/products/${product._id}`} className="trending-card">
       <div className="trending-card_img-container">
         <Image
           src={product.image}
@@ -25,6 +25,7 @@ const TrendingCard = ({ product }: Props) => {
           <p className="text-black opacity-50 text-lg capitalize">
             {`€ ${product.lowestPrice}`}
           </p>
+          {/* <p>//TODO parsear la fecha que viene de product.createdAt</p> */}
         </div>
       </div>
     </Link>

@@ -1,7 +1,9 @@
-import React from 'react';
+type Props = {
+  params: { id: string };
+};
 
-const ProductDetails = () => {
-  return <div>ProductDetails</div>;
+const ProductDetails = ({ params: { id } }: Props) => {
+  return <div>{id}</div>;
 };
 
 export default ProductDetails;
