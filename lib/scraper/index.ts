@@ -66,7 +66,7 @@ export async function scrapePadelProduct(url: string) {
     const lowestNumber =
       oldPriceNumber < finalPriceNumber ? oldPriceNumber : finalPriceNumber;
     const highestNumber =
-      finalPriceNumber > oldPriceNumber ? finalPriceNumber : oldPriceNumber;
+      finalPriceNumber < oldPriceNumber ? finalPriceNumber : oldPriceNumber;
     const image = $('.gallery-placeholder__image').attr('src');
 
     // Construct data object with scraped info
