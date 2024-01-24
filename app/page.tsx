@@ -16,7 +16,7 @@ const Home = async () => {
             <p className="small-text">
               Tu búsqueda comienza aquí{' '}
               <Image
-                src="assets/icons/arrow-right.svg"
+                src="/assets/icons/arrow-right.svg"
                 alt="Arrow Right"
                 width={16}
                 height={16}
