@@ -1,5 +1,7 @@
 import { getProductById } from '@/lib/actions';
+import { Product } from '@/types';
 import Image from 'next/image';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 type Props = {
@@ -7,7 +9,7 @@ type Props = {
 };
 
 const ProductDetails = async ({ params: { id } }: Props) => {
-  const product = await getProductById(id);
+  const product: Product = await getProductById(id);
 
   if (!product) redirect('/');
 
@@ -29,6 +31,52 @@ const ProductDetails = async ({ params: { id } }: Props) => {
               <p className="text-[28px] text-secondary font-semibold">
                 {product.title}
               </p>
+              <Link
+                href={product.url}
+                target="_blank"
+                className="text-base text-black opacity-50"
+              >
+                <p className="flex">
+                  Ver producto
+                  <Image
+                    src="assets/icons/arrow-right.svg"
+                    alt="Arrow Right"
+                    width={16}
+                    height={16}
+                    className="ml-2"
+                  />
+                </p>
+              </Link>
+
+              <div className="flex items-center gap-3">
+                <div className="product-hearts">
+                  <Image
+                    src="/assets/icons/red-heart.svg"
+                    alt="Red Heart"
+                    width={20}
+                    height={20}
+                  />
+                  {/* look up for an svg about stock or not? and then a ternary op
+                   */}
+                  <p className="text-sm font-semibold text-[#D46F77]">1</p>
+                </div>
+                <div className="p-2 bg-white-200 rounded-10">
+                  <Image
+                    src="/assets/icons/bookmark.svg"
+                    alt="Bookmark"
+                    width={20}
+                    height={20}
+                  />
+                </div>
+                <div className="p-2 bg-white-200 rounded-10">
+                  <Image
+                    src="/assets/icons/share.svg"
+                    alt="share"
+                    width={20}
+                    height={20}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
