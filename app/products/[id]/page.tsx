@@ -118,19 +118,53 @@ const ProductDetails = async ({ params: { id } }: Props) => {
                 </p>
               </div>
             </div>
-
             <div className="my-7 flex flex-col gap-5">
               <div className="flex flex-wrap gap-5">
                 <PriceInfoCard
-                  title="Current Price"
+                  title="Precio final"
                   iconSrc="/assets/icons/price-tag.svg"
                   value={`€ ${product.finalPrice}`}
-                  borderColor="#B6DBFF"
+                />
+                <PriceInfoCard
+                  title="Precio promedio"
+                  iconSrc="/assets/icons/chart.svg"
+                  value={`€ ${product.averagePrice}`}
+                />
+                <PriceInfoCard
+                  title="Precio más alto"
+                  iconSrc="/assets/icons/arrow-up.svg"
+                  value={`€ ${product.oldPrice}`}
+                />
+                <PriceInfoCard
+                  title="Precio más bajo"
+                  iconSrc="/assets/icons/arrow-down.svg"
+                  value={`€ ${product.lowestPrice}`}
                 />
               </div>
             </div>
+            MODAL
           </div>
         </div>
+        <div className="flex flex-col gap-16 border-2 border-red-500">
+          <div className="flex flex-col gap-5">
+            <h3 className="text-2x1 text-secondary font-semibold">
+              Descripción del producto
+            </h3>
+            <div className="flex flex-col gap-4">{product?.description}</div>
+          </div>
+          <button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[200px]">
+            <Image
+              src="/assets/icons/bag.svg"
+              alt="buy product"
+              width={22}
+              height={22}
+            />
+            <Link href="/" className="text-base text-white">
+              Comprar
+            </Link>
+          </button>
+        </div>
+        Productos similares
       </div>
     </div>
   );
