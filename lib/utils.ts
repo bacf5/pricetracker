@@ -43,6 +43,7 @@ export function getAveragePrice(priceList: PriceHistoryItem[]) {
     0
   );
   const avgPrice = sumOfPrices / priceList.length || 0;
+  const avgPriceRounded = Math.round(avgPrice);
 
-  return avgPrice;
+  return avgPriceRounded;
 }
