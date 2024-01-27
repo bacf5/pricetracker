@@ -68,7 +68,7 @@ export const Modal = () => {
                     tu correo!
                   </h4>
                   <p className="text-sm text-gray-600 mt-2">
-                    Aprovechá los descuentos en el producto que querés ;)
+                    Te vamos a avisar cuando esté con un nuevo descuento
                   </p>
                 </div>
                 <form className="flex flex-col mt-5">
