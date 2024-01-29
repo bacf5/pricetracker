@@ -1,12 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import React from 'react';
 import Image from 'next/image';
 
 export const Modal = () => {
   let [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // await addUserEmailToProduct(productId, email);
+
+    setIsSubmitting(false);
+    setEmail('');
+    closeModal();
+  };
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -71,7 +84,7 @@ export const Modal = () => {
                     Te vamos a avisar cuando esté con un nuevo descuento
                   </p>
                 </div>
-                <form className="flex flex-col mt-5">
+                <form className="flex flex-col mt-5" onSubmit={handleSubmit}>
                   <label
                     htmlFor="email"
                     className="text-sm font-medium text-gray-700"
@@ -91,10 +104,12 @@ export const Modal = () => {
                       id="email"
                       placeholder="Ingresá tu correo electrónico"
                       className="dialog-input"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     ></input>
                   </div>
                   <button type="submit" className="dialog-btn">
-                    Track!
+                    {isSubmitting ? 'Enviando...' : 'Enviar'}
                   </button>
                 </form>
               </div>
