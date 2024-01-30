@@ -1,18 +1,21 @@
-import { NotificationType, EmailProductInfo, EmailContent } from '@/types';
-const nodemailer = require('nodemailer');
+'use server';
 
-export const THRESHOLD_PERCENTAGE = 40;
-export const Notification = {
+import { NotificationType, EmailProductInfo, EmailContent } from '@/types';
+import nodemailer from 'nodemailer';
+
+const Notification = {
   WELCOME: 'WELCOME',
   CHANGE_OF_STOCK: 'CHANGE_OF_STOCK',
   LOWEST_PRICE: 'LOWEST_PRICE',
   THRESHOLD_MET: 'THRESHOLD_MET',
 };
 
-export const generateEmailBody = (
+export async function generateEmailBody(
   product: EmailProductInfo,
   type: NotificationType
-) => {
+) {
+  const THRESHOLD_PERCENTAGE = 40;
+
   const shortenedTitle =
     product.title.length > 20
       ? `${product.title.substring(0, 20)}...`
@@ -74,7 +77,7 @@ export const generateEmailBody = (
       throw new Error('Invalid notification type.');
   }
   return { subject, body };
-};
+}
 
 const transporter = nodemailer.createTransport({
   pool: true,
@@ -82,7 +85,7 @@ const transporter = nodemailer.createTransport({
   port: 2525,
   auth: {
     user: 'trackdeprecios@hotmail.com',
-    pass: 'process.env.EMAIL_PASSWORD',
+    pass: process.env.EMAIL_PASSWORD,
   },
   maxConnections: 1,
 });
@@ -98,10 +101,10 @@ export const sendEmail = async (
     subject: emailContent.subject,
   };
 
-  transporter.sendEmail(mailOptions, (error: any, info: any) => {
+  transporter.sendMail(mailOptions, (error: any, info: any) => {
     if (error) {
       console.log(error);
     }
-    console.log('Email sent: ' + info);
+    console.log('Email sent: ', info);
   });
 };

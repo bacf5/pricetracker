@@ -4,8 +4,13 @@ import { FormEvent, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import React from 'react';
 import Image from 'next/image';
+import { addUserEmailProduct } from '@/lib/actions';
 
-export const Modal = () => {
+interface Props {
+  productId: string;
+}
+
+export const Modal = ({ productId }: Props) => {
   let [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [email, setEmail] = useState('');
@@ -14,7 +19,7 @@ export const Modal = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // await addUserEmailToProduct(productId, email);
+    addUserEmailProduct(productId, email);
 
     setIsSubmitting(false);
     setEmail('');
@@ -120,3 +125,7 @@ export const Modal = () => {
     </>
   );
 };
+
+// function addUserEmailToProduct(productId: any, email: string) {
+//   throw new Error('Function not implemented.');
+// }
