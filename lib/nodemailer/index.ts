@@ -1,4 +1,5 @@
 import { NotificationType, EmailProductInfo, EmailContent } from '@/types';
+const nodemailer = require('nodemailer');
 
 export const THRESHOLD_PERCENTAGE = 40;
 export const Notification = {
@@ -72,6 +73,7 @@ export const generateEmailBody = (
     default:
       throw new Error('Invalid notification type.');
   }
+  return { subject, body };
 };
 
 const transporter = nodemailer.createTransport({
