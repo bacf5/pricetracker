@@ -5,7 +5,7 @@ import { connectToDatabase } from '../mongoose';
 import { scrapePadelProduct } from '../scraper';
 import { getHighestPrice, getLowestPrice, getAveragePrice } from '../utils';
 import { revalidatePath } from 'next/cache';
-import { User } from '@/types';
+import { EmailContent, User } from '@/types';
 import { generateEmailBody, sendEmail } from '../nodemailer';
 
 export async function scrapeAndStoreProduct(productUrl: string) {
@@ -98,7 +98,7 @@ export async function addUserEmailProduct(
   userEmail: string
 ) {
   try {
-    const product = Product.findById(productId);
+    const product = await Product.findById(productId);
     if (!product) return;
 
     const userExists = product.users.some(
@@ -110,7 +110,7 @@ export async function addUserEmailProduct(
 
       await product.save();
 
-      const emailContent = generateEmailBody(product, 'WELCOME');
+      const emailContent = await generateEmailBody(product, 'WELCOME');
 
       await sendEmail(emailContent, [userEmail]);
     }
