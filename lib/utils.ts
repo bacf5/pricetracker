@@ -1,5 +1,4 @@
 import { PriceHistoryItem } from '@/types';
-import { cursorTo } from 'readline';
 
 export function makeStringToNumber(value: any) {
   const price = value[0];
