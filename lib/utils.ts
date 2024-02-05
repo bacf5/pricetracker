@@ -1,4 +1,14 @@
 import { PriceHistoryItem } from '@/types';
+import { Product } from '@/types';
+
+const NotificationType = {
+  WELCOME: 'WELCOME',
+  CHANGE_OF_STOCK: 'CHANGE_OF_STOCK',
+  LOWEST_PRICE: 'LOWEST_PRICE',
+  THRESHOLD_MET: 'THRESHOLD_MET',
+};
+
+const THRESHOLD_PERCENTAGE = 40;
 
 export function makeStringToNumber(value: any) {
   const price = value[0];
@@ -45,4 +55,24 @@ export function getAveragePrice(priceList: PriceHistoryItem[]) {
   const avgPriceRounded = Math.round(avgPrice);
 
   return avgPriceRounded;
+}
+
+export function getEmailNotificationType(
+  scrapedProduct: Product,
+  currentProduct: Product
+) {
+  const lowestPrice = getLowestPrice(currentProduct.priceHistory);
+
+  if (scrapedProduct.finalPrice < lowestPrice) {
+    return NotificationType.LOWEST_PRICE as keyof typeof NotificationType;
+  }
+
+  if (scrapedProduct.isOutOfStock && currentProduct.isOutOfStock) {
+    return NotificationType.CHANGE_OF_STOCK as keyof typeof NotificationType;
+  }
+
+  if (scrapedProduct.discountRate >= THRESHOLD_PERCENTAGE) {
+    return NotificationType.THRESHOLD_MET as keyof typeof NotificationType;
+  }
+  return null;
 }
