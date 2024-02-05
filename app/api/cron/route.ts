@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server';
 
 export const maxDuration = 300;
 export const dynamic = 'force-dynamic';
-export const revadilate = 0;
+export const revalidate = 0;
 export async function GET() {
   try {
     connectToDatabase();
