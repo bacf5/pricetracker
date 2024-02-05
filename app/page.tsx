@@ -1,9 +1,9 @@
 import HeroCarousel from '@/components/HeroCarousel';
-import SearchBar from '@/components/SearchBar';
 import TrendingCard from '@/components/TrendingCard';
 import { getAllProducts } from '@/lib/actions';
 import Image from 'next/image';
 import React from 'react';
+import SearchBar from '@/components/SearchBar';
 
 const Home = async () => {
   const allProducts = await getAllProducts();
@@ -14,22 +14,13 @@ const Home = async () => {
         <div className="flex max-xl:flex-col gap-16">
           <div className="flex flex-col justify-center">
             <p className="small-text">
-              Tu búsqueda comienza aquí{' '}
-              <Image
-                src="/assets/icons/arrow-right.svg"
-                alt="Arrow Right"
-                width={16}
-                height={16}
-              />
+              Tu búsqueda comienza aquí <Image src="/assets/icons/arrow-right.svg" alt="Arrow Right" width={16} height={16} />
             </p>
             <h1 className="head-text">
               Buscá y esperá el
               <span className="text-primary"> mejor precio</span>
             </h1>
-            <p className="mt-6">
-              ¿Estás esperando un descuento para ese producto que querés?
-              ¡Seguilo acá y cómpralo al precio más bajo!
-            </p>
+            <p className="mt-6">¿Estás esperando un descuento para ese producto que querés? ¡Seguilo acá y cómpralo al precio más bajo!</p>
             <SearchBar />
           </div>
           <HeroCarousel />
