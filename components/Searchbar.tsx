@@ -1,4 +1,5 @@
 'use client';
+
 import { scrapeAndStoreProduct } from '@/lib/actions';
 import React, { FormEvent, useState } from 'react';
 
@@ -11,11 +12,7 @@ const isValidPadelURL = (url: string) => {
 
     // Check if the hostname contains "padel"
 
-    if (
-      hostname.includes('padelnuestro.com') ||
-      hostname.includes('padelnuestro')
-    )
-      return true;
+    if (hostname.includes('padelnuestro.com') || hostname.includes('padelnuestro')) return true;
   } catch (error) {
     return false;
   }
@@ -33,8 +30,7 @@ const SearchBar = () => {
 
     // alert(isValidLink ? 'Link Válido' : ' Link Inválido');
 
-    if (!isValidLink)
-      return alert('Asegurate que el link sea de padelnuestro.com');
+    if (!isValidLink) return alert('Asegurate que el link sea de padelnuestro.com');
 
     try {
       setIsLoading(true);
@@ -58,11 +54,7 @@ const SearchBar = () => {
         className="searchbar-input"
       />
 
-      <button
-        type="submit"
-        className="searchbar-btn"
-        disabled={searchLink === ''}
-      >
+      <button type="submit" className="searchbar-btn" disabled={searchLink === ''}>
         {isLoading ? 'Buscando...' : 'Buscar'}
       </button>
     </form>

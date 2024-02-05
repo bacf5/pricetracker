@@ -5,6 +5,9 @@ import { scrapePadelProduct } from '@/lib/scraper';
 import { getLowestPrice, getHighestPrice, getAveragePrice, getEmailNotificationType } from '@/lib/utils';
 import { NextResponse } from 'next/server';
 
+export const maxDuration = 300;
+export const dynamic = 'force-dynamic';
+export const revadilate = 0;
 export async function GET() {
   try {
     connectToDatabase();
@@ -34,7 +37,7 @@ export async function GET() {
           averagePrice: getAveragePrice(updatedPriceHistory),
         };
 
-        const updatedProduct = await Product.findOneAndUpdate({ url: scrapedProduct.url }, product);
+        const updatedProduct = await Product.findOneAndUpdate({ url: product.url }, product);
 
         // Check each product & send mail if changes
 
