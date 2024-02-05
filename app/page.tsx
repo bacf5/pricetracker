@@ -1,9 +1,9 @@
 import HeroCarousel from '@/components/HeroCarousel';
+import SearchBar from '@/components/SearchBar';
 import TrendingCard from '@/components/TrendingCard';
 import { getAllProducts } from '@/lib/actions';
 import Image from 'next/image';
 import React from 'react';
-import SearchBar from '../components/SearchBar';
 
 const Home = async () => {
   const allProducts = await getAllProducts();
