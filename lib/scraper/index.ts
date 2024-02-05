@@ -75,14 +75,14 @@ export async function scrapePadelProduct(url: string) {
       url,
       title: title,
       description: description,
-      image: image,
+      image: image || '',
       oldPrice: oldPriceNumber || finalPriceNumber,
       finalPrice: finalPriceNumber || oldPriceNumber,
       lowestPrice: lowestNumber,
       highestPrice: highestNumber,
       averagePrice: 0,
       priceHistory: [],
-      discount: discountRate,
+      discountRate: discountRate,
       isOutOfStock: isOutOfStock,
     };
     return data;
