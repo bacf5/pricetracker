@@ -1,7 +1,8 @@
 'use client';
 
 import { scrapeAndStoreProduct } from '@/lib/actions';
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
+import React from 'react';
 
 const isValidPadelURL = (url: string) => {
   // Implement your logic to validate the url
