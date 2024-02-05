@@ -1,5 +1,5 @@
 import HeroCarousel from '@/components/HeroCarousel';
-import SearchBar from '@/components/SearchBar';
+import Searchbar from '@/components/Searchbar';
 import TrendingCard from '@/components/TrendingCard';
 import { getAllProducts } from '@/lib/actions';
 import Image from 'next/image';
@@ -21,7 +21,7 @@ const Home = async () => {
               <span className="text-primary"> mejor precio</span>
             </h1>
             <p className="mt-6">¿Estás esperando un descuento para ese producto que querés? ¡Seguilo acá y cómpralo al precio más bajo!</p>
-            <SearchBar />
+            <Searchbar />
           </div>
           <HeroCarousel />
         </div>
