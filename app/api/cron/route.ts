@@ -24,7 +24,7 @@ export async function GET(request: Request) {
         const scrapedProduct = await scrapePadelProduct(currentProduct.url);
         if (!scrapedProduct) return;
 
-        const updatedPriceHistory: any = [
+        const updatedPriceHistory = [
           ...currentProduct.priceHistory,
           {
             price: scrapedProduct.finalPrice,
@@ -64,7 +64,7 @@ export async function GET(request: Request) {
       message: 'Ok',
       data: updatedProducts,
     });
-  } catch (error) {
+  } catch (error: any) {
     throw new Error('Something went wrong in GET,' + error);
   }
 }
