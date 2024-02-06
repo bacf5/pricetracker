@@ -8,20 +8,20 @@ import { NextResponse } from 'next/server';
 export const maxDuration = 5;
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
-export async function GET() {
+export async function GET(request: Request) {
   try {
     connectToDatabase();
     // get all products
     const products = await Product.find({});
 
-    if (!products) throw new Error('No products found');
+    if (!products) throw new Error('No products fetched');
 
     // scrape products details and update database
 
     const updatedProducts = await Promise.all(
       products.map(async (currentProduct) => {
         const scrapedProduct = await scrapePadelProduct(currentProduct.url);
-        if (!scrapedProduct) throw new Error('No product found');
+        if (!scrapedProduct) return;
 
         const updatedPriceHistory: any = [
           ...currentProduct.priceHistory,
