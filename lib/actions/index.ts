@@ -39,11 +39,7 @@ export async function scrapeAndStoreProduct(productUrl: string) {
       };
     }
 
-    const newProduct = await Product.findOneAndUpdate(
-      { url: scrapedProduct.url },
-      product,
-      { upsert: true, new: true }
-    );
+    const newProduct = await Product.findOneAndUpdate({ url: scrapedProduct.url }, product, { upsert: true, new: true });
     revalidatePath(`/products/${newProduct.id}`);
   } catch (error: any) {
     throw new Error(`Failed to create/update the product: ${error.message}`);
@@ -68,8 +64,8 @@ export async function getAllProducts() {
   try {
     connectToDatabase();
 
-    const products = await Product.find();
-
+    const products = await Product.find({});
+    revalidatePath('/', 'layout');
     return products;
   } catch (error) {
     console.log(error);
@@ -93,17 +89,12 @@ export async function getSimilarProducts(productId: string) {
   }
 }
 
-export async function addUserEmailProduct(
-  productId: string,
-  userEmail: string
-) {
+export async function addUserEmailProduct(productId: string, userEmail: string) {
   try {
     const product = await Product.findById(productId);
     if (!product) return;
 
-    const userExists = product.users.some(
-      (user: User) => user.email === userEmail
-    );
+    const userExists = product.users.some((user: User) => user.email === userEmail);
 
     if (!userExists) {
       product.users.push({ email: userEmail });
