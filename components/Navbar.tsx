@@ -13,25 +13,14 @@ const Navbar = () => {
     <header className="w-full">
       <nav className="nav">
         <Link href="/" className="flex items-center gap-1">
-          <Image
-            src="/assets/icons/logo.svg"
-            width={50}
-            height={50}
-            alt="Logo"
-          />
+          <Image src="/assets/icons/logo.svg" width={50} height={50} alt="Logo" />
           <p className="nav-logo mt-2">
             PRICE<span className="text-primary"> TRACKER</span>
           </p>
         </Link>
         <div className="flex items-center gap-5">
           {navIcons.map((icon, index) => (
-            <Image
-              key={index}
-              src={icon.src}
-              width={28}
-              height={28}
-              alt={icon.alt}
-            />
+            <Image key={index} src={icon.src} width={28} height={28} alt={icon.alt} />
           ))}
         </div>
       </nav>
