@@ -22,7 +22,7 @@ const TrendingCard = ({ product }: Props) => {
       <div className="flex flex-col gap-3">
         <h4 className="trending-title">{product.title}</h4>
         <div className="flex justify-between">
-          <p className="text-black opacity-50 text-lg capitalize">{`€ ${product.lowestPrice}`}</p>
+          <p className="text-black opacity-50 text-lg capitalize">{`€ ${product.finalPrice}`}</p>
           {/* <p>//TODO parsear la fecha que viene de product.createdAt</p> */}
         </div>
       </div>
