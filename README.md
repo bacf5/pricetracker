@@ -42,7 +42,9 @@ As an amateur padel player, I was always interested in having the best equipment
 
 ## Credits
 
-[Font Awesome](https://fontawesome.com) for all the icons.
+[SVG Repo](https://www.svgrepo.com/) for all the icons.
+
+[Next JS](https://nextjs.org/docs) Docs.
 
 [This video](https://www.youtube.com/watch?v=lh9XVGv6BHs) from JS Mastery about web scrapping.
 

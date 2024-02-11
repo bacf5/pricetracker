@@ -7,6 +7,7 @@ import { getHighestPrice, getLowestPrice, getAveragePrice } from '../utils';
 import { revalidatePath } from 'next/cache';
 import { EmailContent, User } from '@/types';
 import { generateEmailBody, sendEmail } from '../nodemailer';
+import { redirect } from 'next/navigation';
 
 export async function scrapeAndStoreProduct(productUrl: string) {
   if (!productUrl) return;
@@ -40,6 +41,7 @@ export async function scrapeAndStoreProduct(productUrl: string) {
     }
 
     const newProduct = await Product.findOneAndUpdate({ url: scrapedProduct.url }, product, { upsert: true, new: true });
+
     revalidatePath(`/products/${newProduct.id}`);
   } catch (error: any) {
     throw new Error(`Failed to create/update the product: ${error.message}`);
