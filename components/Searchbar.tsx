@@ -6,14 +6,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const isValidPadelURL = (url: string) => {
-  // Implement your logic to validate the url
-
+  // Implement logic to validate the url
   try {
     const parsedURL = new URL(url);
     const hostname = parsedURL.hostname;
-
     // Check if the hostname contains "padel"
-
     if (hostname.includes('padelnuestro.com') || hostname.includes('padelnuestro')) return true;
   } catch (error) {
     return false;
@@ -25,8 +22,8 @@ const Searchbar = () => {
   const [searchLink, setSearchLink] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const notify = () =>
-    toast('Busqueda completa ⚡️', {
+  const notifyError = () =>
+    toast.error('Link Invalido', {
       position: 'top-center',
       autoClose: 2000,
       hideProgressBar: false,
@@ -37,14 +34,25 @@ const Searchbar = () => {
       theme: 'light',
     });
 
+  // const notifyOk = () =>
+  //   toast('Busqueda terminada ⚡️', {
+  //     position: 'top-center',
+  //     autoClose: 2000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: 'light',
+  //   });
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const isValidLink = isValidPadelURL(searchLink);
-
     // alert(isValidLink ? 'Link Válido' : ' Link Inválido');
     // Aca puedo poner el toast de react-toastify
-    if (!isValidLink) return alert('Asegurate que el link sea de padelnuestro.com');
+    if (!isValidLink) return notifyError();
 
     try {
       setIsLoading(true);
@@ -64,12 +72,12 @@ const Searchbar = () => {
         type="text"
         value={searchLink}
         onChange={(e) => setSearchLink(e.target.value)}
-        placeholder="Link del producto"
+        placeholder="Link del producto de Padel Nuestro"
         className="searchbar-input"
       />
-      <ToastContainer />
-      <button type="submit" className="searchbar-btn" disabled={searchLink === ''} onClick={notify}>
-        {isLoading ? 'Buscando...' : 'Buscar'}
+      <ToastContainer stacked />
+      <button type="submit" className="searchbar-btn" disabled={searchLink === ''}>
+        {isLoading ? `Buscando...` : 'Buscar'}
       </button>
     </form>
   );
