@@ -31,7 +31,7 @@ const Searchbar = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: 'light',
+      theme: 'dark',
     });
 
   // const notifyOk = () =>
@@ -43,7 +43,7 @@ const Searchbar = () => {
   //     pauseOnHover: true,
   //     draggable: true,
   //     progress: undefined,
-  //     theme: 'light',
+  //     theme: 'dark',
   //   });
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -51,6 +51,7 @@ const Searchbar = () => {
 
     const isValidLink = isValidPadelURL(searchLink);
     // alert(isValidLink ? 'Link Válido' : ' Link Inválido');
+
     // Aca puedo poner el toast de react-toastify
     if (!isValidLink) return notifyError();
 
@@ -75,10 +76,10 @@ const Searchbar = () => {
         placeholder="Link del producto de Padel Nuestro"
         className="searchbar-input"
       />
-      <ToastContainer stacked />
       <button type="submit" className="searchbar-btn" disabled={searchLink === ''}>
         {isLoading ? `Buscando...` : 'Buscar'}
       </button>
+      <ToastContainer />
     </form>
   );
 };

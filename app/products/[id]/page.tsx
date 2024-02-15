@@ -15,6 +15,7 @@ const ProductDetails = async ({ params: { id } }: Props) => {
   const product: Product = await getProductById(id);
 
   if (!product) redirect('/');
+
   const similarProducts = await getSimilarProducts(id);
 
   return (
