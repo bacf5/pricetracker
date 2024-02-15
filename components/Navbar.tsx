@@ -15,8 +15,13 @@ const Navbar = () => {
         <Link href="/" className="flex items-center gap-1">
           <Image src="/assets/icons/logo.svg" width={50} height={50} alt="Logo" />
           <p className="nav-logo mt-2">
-            PRICE<span className="text-primary"> TRACKER</span>
+            PRICE<span className="text-primary"> TRACKER </span>
+            <span className="italic text-[24px]">4</span>
           </p>
+          <div>
+            {' '}
+            <Image src="/assets/images/logo-padelnuestro.png" width={150} height={150} alt="Logo padelNuestro" />
+          </div>
         </Link>
         <div className="flex items-center gap-5">
           {navIcons.map((icon, index) => (
