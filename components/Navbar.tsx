@@ -16,11 +16,10 @@ const Navbar = () => {
           <Image src="/assets/icons/logo.svg" width={50} height={50} alt="Logo" />
           <p className="nav-logo mt-2">
             PRICE<span className="text-primary"> TRACKER </span>
-            <span className="italic text-[24px]">4</span>
           </p>
           <div>
             {' '}
-            <Image src="/assets/images/logo-padelnuestro.png" width={150} height={150} alt="Logo padelNuestro" />
+            <Image src="/assets/images/logo-padelnuestro.png" width={175} height={175} alt="Logo padelNuestro" />
           </div>
         </Link>
         <div className="min-[300px]:hidden lg:flex items-center gap-5">
