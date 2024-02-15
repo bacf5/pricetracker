@@ -23,7 +23,7 @@ const Navbar = () => {
             <Image src="/assets/images/logo-padelnuestro.png" width={150} height={150} alt="Logo padelNuestro" />
           </div>
         </Link>
-        <div className="flex items-center gap-5">
+        <div className="min-[300px]:hidden lg:flex items-center gap-5">
           {navIcons.map((icon, index) => (
             <Image key={index} src={icon.src} width={28} height={28} alt={icon.alt} />
           ))}
