@@ -13,6 +13,8 @@ Small website that tracks prices from Padel Nuestro store and receive informatio
 
 Products are check every day at 10am (GMT-3)
 
+Momentally, it's only for Padel Nuestro and checks only the rackets, in the future it will be able to check all the products.
+
 ## Table of Contents
 
 - [Motivation](#motivation)
@@ -25,7 +27,7 @@ Products are check every day at 10am (GMT-3)
 
 As an amateur padel player, I was always interested in having the best equipment or being aware of the latest offers. While learning Next.js I decided to create this website to receive discounts on the products that interest me, follow them and see when is the best time to buy them! Directly to my inbox.
 
-## Practiced Concepts
+## Tech used & What did i learn?
 
 - [React Responsive Carousel](https://www.npmjs.com/package/react-responsive-carousel)
 - Tailwind Classes / Custom Components
@@ -38,7 +40,11 @@ As an amateur padel player, I was always interested in having the best equipment
 - MongoDB (Connection, set, findOne, findMany)
 - Props between components
 - Headless UI (Modal-transitions)
-- [Nodemailer](https://www.npmjs.com/package/nodemailer) (with cron job)
+- [Nodemailer](https://www.npmjs.com/package/nodemailer) (working with cron job)
+- React-Toastify for the toast messages
+- [Next JS](https://nextjs.org/)
+- [Cheerio](https://www.npmjs.com/package/cheerio)
+- [Axios](https://www.npmjs.com/package/axios)
 
 ## Credits
 
@@ -51,10 +57,11 @@ As an amateur padel player, I was always interested in having the best equipment
 ## Future Ideas
 
 - Dark mode
-- Loading animation when you click search
-- Change logo
-- Add a Toast message animation when link is incorrect
+- ~~Add a Toast message animation when link is incorrect~~
 - Add button to track price again from product page.
+- Redirect when you search a product
+- Modal when you click in "Comprar"
+- Add a search bar
 
 ## Demo
 
