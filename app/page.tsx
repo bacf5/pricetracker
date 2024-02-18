@@ -19,7 +19,10 @@ const Home = async () => {
             </p>
             <h1 className="head-text">
               Buscá y esperá el
-              <span className="text-primary"> mejor precio</span>
+              <span className="bg-gradient-to-r from-primary via-primary-orange to-primary bg-clip-text text-transparent">
+                {' '}
+                mejor precio
+              </span>
             </h1>
             <p className="mt-6">¿Estás esperando un descuento para ese producto que querés? ¡Seguilo acá y cómpralo al precio más bajo!</p>
             <ToastContainer />
@@ -29,7 +32,7 @@ const Home = async () => {
         </div>
       </section>
       <section className="trending-section">
-        <h2 className="section-text text-center before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-primary relative inline-block m-5 hover:scale-105 transition ease-in">
+        <h2 className="section-text text-center before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-primary relative inline-block m-5 hover:scale-105 transition ease-in ">
           <span className="relative text-white font-bold text-[38px]"> Trending </span>
         </h2>
         <div className="flex flex-wrap gap-x-6 gap-y-16 pt-16">

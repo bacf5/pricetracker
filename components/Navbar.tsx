@@ -15,7 +15,8 @@ const Navbar = () => {
         <Link href="/" className="flex items-center gap-1">
           <Image src="/assets/icons/logo.svg" width={50} height={50} alt="Logo" />
           <p className="nav-logo mt-2">
-            PRICE<span className="text-primary"> TRACKER </span>
+            PRICE
+            <span className="bg-gradient-to-r from-primary via-primary-orange to-primary bg-clip-text text-transparent"> TRACKER </span>
           </p>
           <div>
             {' '}
