@@ -6,6 +6,7 @@ import { Product } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { ModalBuy } from '@/components/ModalBuy';
 
 type Props = {
   params: { id: string };
@@ -88,12 +89,9 @@ const ProductDetails = async ({ params: { id } }: Props) => {
           <h3 className="text-2xl text-secondary font-semibold">Descripción del producto</h3>
           <div className="flex flex-col gap-4">{product?.description}</div>
         </div>
-        <button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[200px]">
-          <Image src="/assets/icons/bag.svg" alt="buy product" width={22} height={22} />
-          <Link href="/" className="text-base text-white">
-            Comprar
-          </Link>
-        </button>
+        <div className="w-fit mx-auto flex items-center justify-center gap-3 min-w-[200px]">
+          <ModalBuy productImg={product.image} />
+        </div>
       </div>
       {similarProducts && similarProducts?.length > 0 && (
         <div className="py-14 flex flex-col gap-2 w-full">
