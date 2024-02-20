@@ -31,8 +31,8 @@ export const Modal = ({ productId }: Props) => {
 
   return (
     <>
-      <button type="button" className="btn" onClick={openModal}>
-        Track!
+      <button type="button" className="btn flex items-center text-center justify-center" onClick={openModal}>
+        Seguir precio ⚡️
       </button>
       <Transition appear show={isOpen} as={React.Fragment}>
         <Dialog as="div" onClose={closeModal} className="dialog-container">
@@ -48,10 +48,7 @@ export const Modal = ({ productId }: Props) => {
             >
               <Dialog.Overlay className="fixed inset-0" />
             </Transition.Child>
-            <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
-            />
+            <span className="inline-block h-screen align-middle" aria-hidden="true" />
             <Transition.Child
               as={React.Fragment}
               enter="ease-out duration-300"
@@ -65,44 +62,26 @@ export const Modal = ({ productId }: Props) => {
                 <div className="flex flex-col">
                   <div className="flex justify-between">
                     <div className="p-3  rounded-10">
-                      <Image
-                        src="/assets/icons/logo.svg"
-                        alt="logo"
-                        height={34}
-                        width={34}
-                      />
+                      <Image src="/assets/icons/logo.svg" alt="logo" height={50} width={50} />
                     </div>
                     <Image
                       src="/assets/icons/x-close.svg"
                       alt="close"
                       width={24}
                       height={24}
-                      className="cursor-pointer "
+                      className="cursor-pointer"
                       onClick={closeModal}
                     />
                   </div>
-                  <h4 className="dialog-head_text">
-                    Mantenete actualizado con alertas de precios directamente en
-                    tu correo!
-                  </h4>
-                  <p className="text-sm text-gray-600 mt-2">
-                    Te vamos a avisar cuando esté con un nuevo descuento
-                  </p>
+                  <h4 className="dialog-head_text">Mantenete actualizado con alertas de precios directamente en tu correo!</h4>
+                  <p className="text-sm text-gray-600 mt-2">Te vamos a avisar cuando esté con un nuevo descuento</p>
                 </div>
                 <form className="flex flex-col mt-5" onSubmit={handleSubmit}>
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="email" className="text-sm font-medium text-gray-700">
                     Dirección de email
                   </label>
                   <div className="dialog-input_container">
-                    <Image
-                      src="/assets/icons/mail.svg"
-                      alt="mail"
-                      width={18}
-                      height={18}
-                    />
+                    <Image src="/assets/icons/mail.svg" alt="mail" width={18} height={18} />
                     <input
                       required
                       type="email"
