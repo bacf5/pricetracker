@@ -1,11 +1,15 @@
 'use client';
 
 import { scrapeAndStoreProduct } from '@/lib/actions';
+import Product from '@/lib/models/product.model';
+import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const isValidPadelURL = (url: string) => {
+  // const [route, setRoute] = useState();
+
   // Implement logic to validate the url
   try {
     const parsedURL = new URL(url);
@@ -21,6 +25,7 @@ const isValidPadelURL = (url: string) => {
 const Searchbar = () => {
   const [searchLink, setSearchLink] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const notifyError = () =>
     toast.error('Link Invalido', {
@@ -56,10 +61,13 @@ const Searchbar = () => {
     if (!isValidLink) return notifyError();
 
     try {
+      // const router = useRouter();
+
       setIsLoading(true);
 
       // Scrape the product details from the link
       const product = await scrapeAndStoreProduct(searchLink);
+      router.push(`/products/${product}`);
     } catch (error) {
       console.log(error);
     } finally {
