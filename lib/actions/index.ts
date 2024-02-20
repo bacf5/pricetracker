@@ -43,6 +43,7 @@ export async function scrapeAndStoreProduct(productUrl: string) {
     const newProduct = await Product.findOneAndUpdate({ url: scrapedProduct.url }, product, { upsert: true, new: true });
 
     revalidatePath(`/products/${newProduct.id}`);
+    return newProduct.id;
   } catch (error: any) {
     throw new Error(`Failed to create/update the product: ${error.message}`);
   }
