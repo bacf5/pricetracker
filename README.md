@@ -40,6 +40,7 @@ As an amateur padel player, I was always interested in having the best equipment
 ## Built with
 
 - [NextJS 14](https://nextjs.org/) Framework.
+- Typescript
 - Tailwind CSS
 - MongoDB
 
