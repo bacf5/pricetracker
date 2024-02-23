@@ -119,6 +119,11 @@
     @apply font-spaceGrotesk sm:text-[24px] text-secondary font-bold;
   }
 
+  /* FOOTER */
+  .footer {
+    @apply flex justify-center items-center px-6 md:px-20 py-4;
+  }
+
   /* PRICE INFO */
   .price-info_card {
     @apply flex-1 min-w-[200px] flex flex-col gap-2 border-l-[3px] rounded-10 bg-white-100 px-5 py-4;
